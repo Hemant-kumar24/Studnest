@@ -1,3 +1,4 @@
+
 const bcrypt = require("bcryptjs");
 const Admin = require("../models/Admin");
 
@@ -22,9 +23,7 @@ const getAdminProfile = async (req, res) => {
       });
     }
 
-    return res.status(200).json({
-      admin,
-    });
+    return res.status(200).json({ admin });
   } catch (error) {
     console.error("Error fetching admin profile:", error);
 
@@ -47,13 +46,7 @@ const updateAdminProfile = async (req, res) => {
       });
     }
 
-    const {
-      name,
-      phone,
-      address,
-      city,
-      email,
-    } = req.body;
+    const { name, phone, address, city, email } = req.body;
 
     const admin = await Admin.findById(adminId);
 
@@ -124,6 +117,8 @@ const updateAdminProfile = async (req, res) => {
 
 // ==========================================
 // CHANGE ADMIN PASSWORD
+// PUT /api/admin/profile/password
+// Requires currentPassword and newPassword
 // ==========================================
 const changeAdminPassword = async (req, res) => {
   try {
@@ -135,12 +130,14 @@ const changeAdminPassword = async (req, res) => {
       });
     }
 
-    const {
-      currentPassword,
-      newPassword,
-    } = req.body;
+    const { currentPassword, newPassword } = req.body;
 
-    if (!currentPassword || !newPassword) {
+    if (
+      typeof currentPassword !== "string" ||
+      typeof newPassword !== "string" ||
+      !currentPassword ||
+      !newPassword
+    ) {
       return res.status(400).json({
         message: "Current password and new password are required",
       });
@@ -152,11 +149,18 @@ const changeAdminPassword = async (req, res) => {
       });
     }
 
-    const admin = await Admin.findById(adminId);
+    // Explicitly select password in case the schema uses select: false.
+    const admin = await Admin.findById(adminId).select("+password");
 
     if (!admin) {
       return res.status(404).json({
         message: "Admin not found",
+      });
+    }
+
+    if (!admin.password) {
+      return res.status(500).json({
+        message: "Admin password is not configured correctly",
       });
     }
 
@@ -182,7 +186,7 @@ const changeAdminPassword = async (req, res) => {
       });
     }
 
-    admin.password = await bcrypt.hash(newPassword, 10);
+    admin.password = await bcrypt.hash(newPassword, 12);
 
     await admin.save();
 

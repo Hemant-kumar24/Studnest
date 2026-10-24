@@ -57,21 +57,21 @@ export default function AdminHostelDetails() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+      <main className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 sm:p-6 lg:p-8">
         <div className="mx-auto max-w-7xl space-y-6">
-          <div className="h-5 w-40 animate-pulse rounded bg-slate-200" />
+          <div className="h-5 w-40 animate-pulse rounded bg-slate-200 dark:bg-slate-700" />
 
-          <div className="h-32 animate-pulse rounded-2xl bg-slate-200" />
+          <div className="h-32 animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-700" />
 
           <div className="grid gap-6 lg:grid-cols-3">
             <div className="space-y-6 lg:col-span-2">
-              <div className="h-72 animate-pulse rounded-2xl bg-slate-200" />
-              <div className="h-52 animate-pulse rounded-2xl bg-slate-200" />
+              <div className="h-72 animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-700" />
+              <div className="h-52 animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-700" />
             </div>
 
             <div className="space-y-6">
-              <div className="h-52 animate-pulse rounded-2xl bg-slate-200" />
-              <div className="h-52 animate-pulse rounded-2xl bg-slate-200" />
+              <div className="h-52 animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-700" />
+              <div className="h-52 animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-700" />
             </div>
           </div>
         </div>
@@ -85,24 +85,24 @@ export default function AdminHostelDetails() {
 
   if (!hostel) {
     return (
-      <main className="flex min-h-[70vh] items-center justify-center bg-slate-50 p-6">
-        <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+      <main className="flex min-h-[70vh] items-center justify-center bg-slate-50 dark:bg-slate-950 p-6">
+        <div className="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-8 text-center shadow-sm">
 
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-red-50">
-            <XCircle className="h-7 w-7 text-red-500" />
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-red-50 dark:bg-red-950/40">
+            <XCircle className="h-7 w-7 text-red-500 dark:text-red-400" />
           </div>
 
-          <h1 className="mt-4 text-xl font-bold text-slate-900">
+          <h1 className="mt-4 text-xl font-bold text-slate-900 dark:text-slate-100">
             Hostel not found
           </h1>
 
-          <p className="mt-2 text-sm leading-6 text-slate-500">
+          <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
             {error || "The requested hostel could not be found."}
           </p>
 
           <Link
             to="/admin/hostels"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 dark:hover:bg-slate-700"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Hostels
@@ -157,7 +157,7 @@ export default function AdminHostelDetails() {
   ).toLowerCase();
 
   return (
-    <main className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 sm:p-6 lg:p-8">
       <div className="mx-auto max-w-7xl">
 
         {/* =========================================
@@ -168,13 +168,13 @@ export default function AdminHostelDetails() {
 
           <Link
             to="/admin/hostels"
-            className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+            className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 transition hover:text-slate-900 dark:hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Hostels
           </Link>
 
-          <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <section className="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm">
 
             <div className="p-5 sm:p-6">
 
@@ -187,19 +187,19 @@ export default function AdminHostelDetails() {
                     Hostel Details
                   </div>
 
-                  <h1 className="break-words text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                  <h1 className="break-words text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-3xl">
                     {hostel.propertyTitle ||
                       "Untitled Hostel"}
                   </h1>
 
-                  <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-slate-500">
+                  <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
 
                     <span className="inline-flex items-center gap-1.5">
                       <MapPin className="h-4 w-4" />
                       {hostel.city || "-"}
                     </span>
 
-                    <span className="text-slate-300">
+                    <span className="text-slate-300 dark:text-slate-600">
                       •
                     </span>
 
@@ -230,7 +230,7 @@ export default function AdminHostelDetails() {
         ========================================== */}
 
         {error && (
-          <div className="mb-6 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+          <div className="mb-6 flex items-start gap-3 rounded-xl border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/40 p-4 text-sm text-red-700 dark:text-red-300">
 
             <XCircle className="mt-0.5 h-5 w-5 shrink-0" />
 
@@ -253,13 +253,13 @@ export default function AdminHostelDetails() {
 
             {/* PROPERTY DETAILS */}
 
-            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <section className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 shadow-sm sm:p-6">
 
               <SectionHeader
                 icon={
                   <Building2 className="h-5 w-5 text-indigo-600" />
                 }
-                bg="bg-indigo-50"
+                bg="bg-indigo-50 dark:bg-indigo-950/40"
                 title="Property Details"
                 description="Basic information about this accommodation."
               />
@@ -270,11 +270,11 @@ export default function AdminHostelDetails() {
 
                 <div>
 
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                     Description
                   </p>
 
-                  <p className="text-sm leading-7 text-slate-600">
+                  <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">
                     {hostel.description ||
                       "No description provided."}
                   </p>
@@ -356,13 +356,13 @@ export default function AdminHostelDetails() {
                 AMENITIES
             ====================================== */}
 
-            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <section className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 shadow-sm sm:p-6">
 
               <SectionHeader
                 icon={
                   <Sparkles className="h-5 w-5 text-amber-600" />
                 }
-                bg="bg-amber-50"
+                bg="bg-amber-50 dark:bg-amber-950/40"
                 title="Amenities"
                 description="Facilities provided by this property."
               />
@@ -375,7 +375,7 @@ export default function AdminHostelDetails() {
                     (amenity, index) => (
                       <span
                         key={`${amenity}-${index}`}
-                        className="rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700"
+                        className="rounded-full border border-indigo-100 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/40 px-3 py-1.5 text-sm font-medium text-indigo-700 dark:text-indigo-300"
                       >
                         {amenity}
                       </span>
@@ -384,7 +384,7 @@ export default function AdminHostelDetails() {
 
                 </div>
               ) : (
-                <div className="rounded-xl bg-slate-50 p-4 text-sm text-slate-500">
+                <div className="rounded-xl bg-slate-50 dark:bg-slate-950 p-4 text-sm text-slate-500 dark:text-slate-400">
                   No amenities listed.
                 </div>
               )}
@@ -395,13 +395,13 @@ export default function AdminHostelDetails() {
                 IMAGES
             ====================================== */}
 
-            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <section className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 shadow-sm sm:p-6">
 
               <SectionHeader
                 icon={
                   <ImageIcon className="h-5 w-5 text-purple-600" />
                 }
-                bg="bg-purple-50"
+                bg="bg-purple-50 dark:bg-purple-950/40"
                 title="Property Images"
                 description={`${images.length} ${
                   images.length === 1
@@ -417,7 +417,7 @@ export default function AdminHostelDetails() {
                     (image, index) => (
                       <div
                         key={`${image}-${index}`}
-                        className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100"
+                        className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800"
                       >
 
                         <img
@@ -430,7 +430,7 @@ export default function AdminHostelDetails() {
                         />
 
                         {index === 0 && (
-                          <div className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1.5 text-xs font-bold text-slate-800 shadow">
+                          <div className="absolute bottom-3 left-3 rounded-full bg-white/90 dark:bg-slate-800/90 px-3 py-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 shadow">
                             Main Image
                           </div>
                         )}
@@ -445,17 +445,17 @@ export default function AdminHostelDetails() {
 
                 </div>
               ) : (
-                <div className="flex h-56 items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50">
+                <div className="flex h-56 items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950">
 
                   <div className="text-center">
 
-                    <ImageIcon className="mx-auto h-9 w-9 text-slate-300" />
+                    <ImageIcon className="mx-auto h-9 w-9 text-slate-300 dark:text-slate-600" />
 
-                    <p className="mt-3 text-sm font-medium text-slate-600">
+                    <p className="mt-3 text-sm font-medium text-slate-600 dark:text-slate-300">
                       No images available
                     </p>
 
-                    <p className="mt-1 text-xs text-slate-400">
+                    <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
                       Edit this hostel to upload images.
                     </p>
 
@@ -476,9 +476,9 @@ export default function AdminHostelDetails() {
 
             {/* PROPERTY STATS */}
 
-            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <section className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 shadow-sm">
 
-              <h2 className="mb-4 text-base font-bold text-slate-900">
+              <h2 className="mb-4 text-base font-bold text-slate-900 dark:text-slate-100">
                 Property Stats
               </h2>
 
@@ -521,9 +521,9 @@ export default function AdminHostelDetails() {
 
             {/* OWNER */}
 
-            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <section className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 shadow-sm">
 
-              <h2 className="mb-4 text-base font-bold text-slate-900">
+              <h2 className="mb-4 text-base font-bold text-slate-900 dark:text-slate-100">
                 Owner Information
               </h2>
 
@@ -558,13 +558,13 @@ export default function AdminHostelDetails() {
                 MANAGE HOSTEL
             ====================================== */}
 
-            <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm lg:sticky lg:top-6">
+            <section className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 shadow-sm lg:sticky lg:top-6">
 
-              <h2 className="text-base font-bold text-slate-900">
+              <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">
                 Manage Hostel
               </h2>
 
-              <p className="mt-1 text-xs leading-5 text-slate-500">
+              <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">
                 Update property information, manage
                 rooms, pricing, amenities and images.
               </p>
@@ -595,7 +595,7 @@ export default function AdminHostelDetails() {
 
                 <Link
                   to="/admin/hostels"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-3 text-sm font-semibold text-slate-700 dark:text-slate-200 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back to Hostels
@@ -635,11 +635,11 @@ function SectionHeader({
 
       <div className="min-w-0">
 
-        <h2 className="text-base font-bold text-slate-900">
+        <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">
           {title}
         </h2>
 
-        <p className="mt-0.5 text-xs text-slate-500">
+        <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
           {description}
         </p>
 
@@ -660,7 +660,7 @@ function InfoItem({
   value,
 }) {
   return (
-    <div className="rounded-xl border border-slate-100 bg-slate-50 p-4">
+    <div className="rounded-xl border border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 p-4">
 
       <div className="mb-2 flex items-center gap-2 text-indigo-600">
         {icon}
@@ -670,7 +670,7 @@ function InfoItem({
         </span>
       </div>
 
-      <p className="break-words text-sm font-medium leading-6 text-slate-800">
+      <p className="break-words text-sm font-medium leading-6 text-slate-800 dark:text-slate-200">
         {value}
       </p>
 
@@ -688,13 +688,13 @@ function Stat({
   value,
 }) {
   return (
-    <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+    <div className="flex items-center justify-between rounded-xl bg-slate-50 dark:bg-slate-950 px-4 py-3">
 
-      <span className="text-sm text-slate-500">
+      <span className="text-sm text-slate-500 dark:text-slate-400">
         {label}
       </span>
 
-      <span className="font-bold text-slate-900">
+      <span className="font-bold text-slate-900 dark:text-slate-100">
         {value}
       </span>
 
@@ -714,11 +714,11 @@ function OwnerItem({
   return (
     <div>
 
-      <p className="text-xs font-medium text-slate-400">
+      <p className="text-xs font-medium text-slate-400 dark:text-slate-500">
         {label}
       </p>
 
-      <p className="mt-1 break-all text-sm font-semibold text-slate-800">
+      <p className="mt-1 break-all text-sm font-semibold text-slate-800 dark:text-slate-200">
         {value}
       </p>
 

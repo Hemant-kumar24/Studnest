@@ -39,9 +39,15 @@ export default function BookingPayment() {
 
         const response = await getBookingById(id);
 
-        setBooking(
+        const bookingData =
           response.data?.data ||
-            response.data?.booking
+          response.data?.booking ||
+          response.data;
+
+        setBooking(
+          bookingData && bookingData._id
+            ? bookingData
+            : null
         );
       } catch (err) {
         setError(getApiErrorMessage(err));
@@ -59,6 +65,11 @@ export default function BookingPayment() {
     try {
       if (!booking?._id) {
         throw new Error("Booking information is missing");
+      }
+
+      if (booking.paymentStatus === "Paid") {
+        setError("This booking has already been paid.");
+        return;
       }
 
       setPaying(true);
@@ -80,7 +91,8 @@ export default function BookingPayment() {
 
       const order =
         orderResponse.data?.data ||
-        orderResponse.data?.order;
+        orderResponse.data?.order ||
+        orderResponse.data;
 
       if (!order?.id) {
         throw new Error(

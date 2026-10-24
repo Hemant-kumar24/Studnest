@@ -1,3 +1,4 @@
+
 const express = require("express");
 
 const router = express.Router();
@@ -13,31 +14,27 @@ const {
   rejectBooking,
 } = require("../controllers/bookingController");
 
+const {
+  getBookingByIdAdmin,
+} = require("../controllers/adminBookingController");
+
 const authMiddleware = require("../middlewares/authMiddleware");
 const adminAuth = require("../middlewares/adminAuth");
 
 // ==========================================
-// STUDENT BOOKING
+// STUDENT BOOKING ROUTES
 // ==========================================
 
-router.post(
-  "/",
-  authMiddleware,
-  createBooking
-);
+// POST /api/bookings
+router.post("/", authMiddleware, createBooking);
 
-router.get(
-  "/my",
-  authMiddleware,
-  getMyBookings
-);
+// GET /api/bookings/my
+router.get("/my", authMiddleware, getMyBookings);
 
-router.get(
-  "/my/:id",
-  authMiddleware,
-  getMyBooking
-);
+// GET /api/bookings/my/:id
+router.get("/my/:id", authMiddleware, getMyBooking);
 
+// PATCH /api/bookings/my/:id/cancel
 router.patch(
   "/my/:id/cancel",
   authMiddleware,
@@ -45,14 +42,17 @@ router.patch(
 );
 
 // ==========================================
-// ADMIN BOOKING
+// ADMIN BOOKING ROUTES
 // ==========================================
 
 // GET /api/bookings/admin
+router.get("/admin", adminAuth, getAllBookings);
+
+// GET /api/bookings/admin/:id
 router.get(
-  "/admin",
+  "/admin/:id",
   adminAuth,
-  getAllBookings
+  getBookingByIdAdmin
 );
 
 // PATCH /api/bookings/admin/:id/approve

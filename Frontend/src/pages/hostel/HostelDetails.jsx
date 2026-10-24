@@ -259,21 +259,13 @@ export default function HostelDetails() {
         hostel?.image ||
         FALLBACK_IMAGE;
 
-  const rating = Number(
-    hostel?.rating || 0
-  );
+  const rating = Number(hostel?.rating || 0);
 
-  const rent = Number(
-    hostel?.monthlyRent || 0
-  );
+  const rent = Number(hostel?.monthlyRent || 0);
 
-  const deposit = Number(
-    hostel?.securityDeposit || 0
-  );
+  const deposit = Number(hostel?.securityDeposit || 0);
 
-  const availableRooms = Number(
-    hostel?.availableRooms || 0
-  );
+  const availableRooms = Number(hostel?.availableRooms || 0);
 
   const genderPreference =
     hostel?.genderPreference || "Any";
@@ -358,7 +350,7 @@ export default function HostelDetails() {
 
                 <div className="flex flex-wrap items-center gap-2">
 
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-sm font-bold text-slate-800 shadow-md">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-sm font-bold text-slate-800 shadow-md dark:bg-slate-900/95 dark:text-slate-100">
 
                     <FaStar className="text-yellow-400" />
 
@@ -430,7 +422,7 @@ export default function HostelDetails() {
 
                   <div>
 
-                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                       Nearby College
                     </p>
 
@@ -465,7 +457,7 @@ export default function HostelDetails() {
 
               <div className="mt-7 rounded-2xl bg-slate-50 p-5 dark:bg-slate-800/60">
 
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                   Monthly Rent
                 </p>
 
@@ -759,7 +751,7 @@ function InfoBox({
   return (
     <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-800/60">
 
-      <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
+      <div className="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
 
         <span className="text-indigo-500">
           {icon}

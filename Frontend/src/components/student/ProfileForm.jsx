@@ -45,44 +45,43 @@ export default function ProfileForm({ user, onSave, saving = false }) {
   };
 
   const inputClass =
-    "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100";
+    "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-indigo-400 dark:focus:ring-indigo-900/40";
 
   const labelClass =
-    "mb-2 block text-sm font-semibold text-slate-700";
+    "mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-300";
 
   return (
     <form
       onSubmit={submit}
-      className="space-y-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+      className="space-y-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors duration-300 dark:border-slate-700 dark:bg-slate-800/70 sm:p-6"
     >
       {/* Heading */}
       <div className="mb-2">
-        <h2 className="text-lg font-bold text-slate-900">
+        <h2 className="text-lg font-bold text-slate-900 dark:text-white">
           Personal Information
         </h2>
 
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           Keep your profile information up to date.
         </p>
       </div>
 
       {/* Full Name */}
       <div>
-        <label
-          htmlFor="name"
-          className={labelClass}
-        >
+        <label htmlFor="name" className={labelClass}>
           Full Name
         </label>
 
         <input
           id="name"
+          name="name"
           type="text"
           value={form.name}
           onChange={update("name")}
           required
           minLength={2}
           maxLength={100}
+          autoComplete="name"
           placeholder="Enter your full name"
           className={inputClass}
         />
@@ -90,20 +89,19 @@ export default function ProfileForm({ user, onSave, saving = false }) {
 
       {/* Phone */}
       <div>
-        <label
-          htmlFor="phone"
-          className={labelClass}
-        >
+        <label htmlFor="phone" className={labelClass}>
           Phone
         </label>
 
         <input
           id="phone"
+          name="phone"
           type="tel"
           value={form.phone}
           onChange={update("phone")}
-          inputMode="numeric"
+          inputMode="tel"
           maxLength={15}
+          autoComplete="tel"
           placeholder="Enter your phone number"
           className={inputClass}
         />
@@ -111,19 +109,18 @@ export default function ProfileForm({ user, onSave, saving = false }) {
 
       {/* College */}
       <div>
-        <label
-          htmlFor="college"
-          className={labelClass}
-        >
+        <label htmlFor="college" className={labelClass}>
           College
         </label>
 
         <input
           id="college"
+          name="college"
           type="text"
           value={form.college}
           onChange={update("college")}
           maxLength={150}
+          autoComplete="organization"
           placeholder="Enter your college name"
           className={inputClass}
         />
@@ -131,43 +128,30 @@ export default function ProfileForm({ user, onSave, saving = false }) {
 
       {/* Gender */}
       <div>
-        <label
-          htmlFor="gender"
-          className={labelClass}
-        >
+        <label htmlFor="gender" className={labelClass}>
           Gender
         </label>
 
         <select
           id="gender"
+          name="gender"
           value={form.gender}
           onChange={update("gender")}
           className={inputClass}
         >
-          <option value="">
-            Select Gender
-          </option>
-
-          <option value="Male">
-            Male
-          </option>
-
-          <option value="Female">
-            Female
-          </option>
-
-          <option value="Other">
-            Other
-          </option>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
         </select>
       </div>
 
       {/* Actions */}
-      <div className="flex flex-col gap-3 border-t border-slate-100 pt-5 sm:flex-row">
+      <div className="flex flex-col gap-3 border-t border-slate-100 pt-5 dark:border-slate-700 sm:flex-row">
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-indigo-600 dark:hover:bg-indigo-500 dark:focus:ring-offset-slate-900"
         >
           {saving ? "Saving..." : "Save Profile"}
         </button>

@@ -1,20 +1,9 @@
-// src/utils/axiosInstance.js
+/**
+ * src/utils/axiosInstance.js
+ *
+ * Legacy Axios import path.
+ * Reuses the shared Axios instance from src/api/axios.js
+ * so the API URL and authentication interceptors stay consistent.
+ */
 
-import axios from 'axios';
-
-const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://studnest-backend.onrender.com/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
-export default instance;
+export { default } from "../api/axios";

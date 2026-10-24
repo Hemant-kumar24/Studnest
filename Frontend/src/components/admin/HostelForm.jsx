@@ -510,7 +510,7 @@ export default function HostelForm({
   return (
     <form
       onSubmit={submit}
-      className="space-y-8"
+      className="space-y-8 text-slate-800 dark:text-slate-100"
     >
       {/* =========================================
           BASIC INFORMATION
@@ -521,7 +521,7 @@ export default function HostelForm({
           icon={
             <FileText className="h-5 w-5 text-indigo-600" />
           }
-          iconBg="bg-indigo-50"
+          iconBg="bg-indigo-50 dark:bg-indigo-400/10"
           title="Basic Information"
           description="Enter the basic details of the property."
         />
@@ -605,12 +605,12 @@ export default function HostelForm({
           IMAGES
       ========================================== */}
 
-      <section className="border-t border-slate-100 pt-8">
+      <section className="border-t border-slate-200 pt-8 dark:border-slate-700">
         <SectionHeader
           icon={
             <ImagePlus className="h-5 w-5 text-pink-600" />
           }
-          iconBg="bg-pink-50"
+          iconBg="bg-pink-50 dark:bg-pink-400/10"
           title="Property Images"
           description="Upload up to 8 property images. Each image can be up to 5MB."
         />
@@ -620,15 +620,15 @@ export default function HostelForm({
             htmlFor="hostel-images"
             className="group flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 px-6 py-10 text-center transition hover:border-indigo-300 hover:bg-indigo-50/40"
           >
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition group-hover:scale-105">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition group-hover:scale-105 dark:bg-slate-900 dark:ring-slate-700">
               <Upload className="h-6 w-6 text-indigo-600" />
             </div>
 
-            <p className="mt-4 text-sm font-bold text-slate-800">
+            <p className="mt-4 text-sm font-bold text-slate-800 dark:text-slate-100">
               Click to upload property images
             </p>
 
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
               JPG, JPEG, PNG or WEBP · Maximum 8
               images · 5MB each
             </p>
@@ -652,7 +652,7 @@ export default function HostelForm({
                   Existing Images
                 </p>
 
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-slate-400 dark:text-slate-500">
                   {existingImages.length} image
                   {existingImages.length !== 1
                     ? "s"
@@ -665,7 +665,7 @@ export default function HostelForm({
                   (image, index) => (
                     <div
                       key={`${image}-${index}`}
-                      className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100"
+                      className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800"
                     >
                       <img
                         src={image}
@@ -684,7 +684,7 @@ export default function HostelForm({
                       </button>
 
                       {index === 0 && (
-                        <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-700 shadow">
+                        <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-700 shadow dark:bg-slate-900/90 dark:text-slate-200">
                           Main Image
                         </span>
                       )}
@@ -704,7 +704,7 @@ export default function HostelForm({
                   New Images
                 </p>
 
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-slate-400 dark:text-slate-500">
                   {images.length}/8 selected
                 </span>
               </div>
@@ -739,12 +739,12 @@ export default function HostelForm({
           LOCATION
       ========================================== */}
 
-      <section className="border-t border-slate-100 pt-8">
+      <section className="border-t border-slate-200 pt-8 dark:border-slate-700">
         <SectionHeader
           icon={
             <MapPin className="h-5 w-5 text-emerald-600" />
           }
-          iconBg="bg-emerald-50"
+          iconBg="bg-emerald-50 dark:bg-emerald-400/10"
           title="Location"
           description="Add the property's address and exact map location."
         />
@@ -813,16 +813,16 @@ export default function HostelForm({
           ====================================== */}
 
           <div className="md:col-span-2">
-            <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-5">
+            <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-5 dark:border-emerald-400/20 dark:bg-emerald-400/5">
 
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
                 <div>
-                  <p className="text-sm font-bold text-slate-800">
+                  <p className="text-sm font-bold text-slate-800 dark:text-slate-100">
                     Property Map Location
                   </p>
 
-                  <p className="mt-1 text-xs leading-5 text-slate-500">
+                  <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">
                     Use the property's actual location so
                     students can find it in Nearby Hostels.
                   </p>
@@ -851,7 +851,7 @@ export default function HostelForm({
               {/* LOCATION MESSAGE */}
 
               {locationMessage && (
-                <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-700">
+                <div className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
                   <CheckCircle2 className="h-4 w-4" />
                   {locationMessage}
                 </div>
@@ -860,7 +860,7 @@ export default function HostelForm({
               {/* LOCATION ERROR */}
 
               {locationError && (
-                <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs font-medium leading-5 text-red-600">
+                <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs font-medium leading-5 text-red-600 dark:border-red-400/30 dark:bg-red-400/10 dark:text-red-300">
                   {locationError}
                 </p>
               )}
@@ -890,7 +890,7 @@ export default function HostelForm({
                     className={inputClass}
                   />
 
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-[11px] text-slate-400 dark:text-slate-500">
                     Range: -90 to 90
                   </p>
                 </FormField>
@@ -914,7 +914,7 @@ export default function HostelForm({
                     className={inputClass}
                   />
 
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-[11px] text-slate-400 dark:text-slate-500">
                     Range: -180 to 180
                   </p>
                 </FormField>
@@ -925,12 +925,12 @@ export default function HostelForm({
 
               {form.latitude &&
                 form.longitude && (
-                  <div className="mt-4 rounded-xl border border-emerald-200 bg-white px-4 py-3">
-                    <p className="text-xs font-semibold text-slate-500">
+                  <div className="mt-4 rounded-xl border border-emerald-200 bg-white px-4 py-3 dark:border-emerald-400/30 dark:bg-slate-900">
+                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                       Saved Map Coordinates
                     </p>
 
-                    <p className="mt-1 font-mono text-sm font-bold text-emerald-700">
+                    <p className="mt-1 font-mono text-sm font-bold text-emerald-700 dark:text-emerald-300">
                       {form.latitude},{" "}
                       {form.longitude}
                     </p>
@@ -945,12 +945,12 @@ export default function HostelForm({
           PRICING
       ========================================== */}
 
-      <section className="border-t border-slate-100 pt-8">
+      <section className="border-t border-slate-200 pt-8 dark:border-slate-700">
         <SectionHeader
           icon={
             <IndianRupee className="h-5 w-5 text-amber-600" />
           }
-          iconBg="bg-amber-50"
+          iconBg="bg-amber-50 dark:bg-amber-400/10"
           title="Pricing & Preference"
           description="Set rent, security deposit and gender preference."
         />
@@ -1036,12 +1036,12 @@ export default function HostelForm({
           ROOM CAPACITY
       ========================================== */}
 
-      <section className="border-t border-slate-100 pt-8">
+      <section className="border-t border-slate-200 pt-8 dark:border-slate-700">
         <SectionHeader
           icon={
             <Users className="h-5 w-5 text-cyan-600" />
           }
-          iconBg="bg-cyan-50"
+          iconBg="bg-cyan-50 dark:bg-cyan-400/10"
           title="Room Capacity"
           description="Set the total and currently available rooms."
         />
@@ -1086,12 +1086,12 @@ export default function HostelForm({
           AMENITIES
       ========================================== */}
 
-      <section className="border-t border-slate-100 pt-8">
+      <section className="border-t border-slate-200 pt-8 dark:border-slate-700">
         <SectionHeader
           icon={
             <Sparkles className="h-5 w-5 text-purple-600" />
           }
-          iconBg="bg-purple-50"
+          iconBg="bg-purple-50 dark:bg-purple-400/10"
           title="Amenities"
           description="Add facilities available at the property."
         />
@@ -1121,7 +1121,7 @@ export default function HostelForm({
               .map((item, index) => (
                 <span
                   key={`${item}-${index}`}
-                  className="rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700"
+                  className="rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700 dark:border-indigo-400/30 dark:bg-indigo-400/10 dark:text-indigo-300"
                 >
                   {item}
                 </span>
@@ -1134,13 +1134,13 @@ export default function HostelForm({
           ACTIONS
       ========================================== */}
 
-      <div className="flex flex-col-reverse gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:justify-end">
+      <div className="flex flex-col-reverse gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:justify-end dark:border-slate-700">
 
         <button
           type="button"
           disabled={saving}
           onClick={() => window.history.back()}
-          className="inline-flex h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
         >
           Cancel
         </button>
@@ -1188,11 +1188,11 @@ function SectionHeader({
       </div>
 
       <div>
-        <h3 className="text-base font-bold text-slate-900">
+        <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">
           {title}
         </h3>
 
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-slate-500 dark:text-slate-400">
           {description}
         </p>
       </div>
@@ -1223,7 +1223,7 @@ function ImagePreview({
   }, [file]);
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
+    <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
 
       {preview && (
         <img
@@ -1242,7 +1242,7 @@ function ImagePreview({
       </button>
 
       {index === 0 && (
-        <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-700 shadow">
+        <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-700 shadow dark:bg-slate-900/90 dark:text-slate-200">
           Main Image
         </span>
       )}
@@ -1263,10 +1263,10 @@ function FormField({
 }) {
   return (
     <div className="space-y-2">
-      <label className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
+      <label className="flex items-center gap-1.5 text-sm font-semibold text-slate-700 dark:text-slate-200">
 
         {icon && (
-          <span className="text-slate-400">
+          <span className="text-slate-400 dark:text-slate-500">
             {icon}
           </span>
         )}
@@ -1283,7 +1283,7 @@ function FormField({
       {children}
 
       {hint && (
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-400 dark:text-slate-500">
           {hint}
         </p>
       )}
@@ -1296,4 +1296,4 @@ function FormField({
 // ==========================================
 
 const inputClass =
-  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50";
+  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:hover:border-slate-600 dark:focus:border-indigo-400 dark:focus:ring-indigo-500/10";

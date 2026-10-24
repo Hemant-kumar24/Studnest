@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBell } from "react-icons/fa";
 
@@ -7,7 +7,7 @@ import adminNotificationService from "../../services/adminNotificationService";
 export default function AdminNotificationBell() {
   const [count, setCount] = useState(0);
 
-  const loadCount = async () => {
+  const loadCount = useCallback(async () => {
     try {
       const response =
         await adminNotificationService.getUnreadNotificationCount();
@@ -23,11 +23,12 @@ export default function AdminNotificationBell() {
             data.data?.unreadCount ??
             0;
 
-      setCount(Number(value) || 0);
+      setCount(Math.max(0, Number(value) || 0));
     } catch {
+      // Keep the bell usable if the count endpoint temporarily fails.
       setCount(0);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadCount();
@@ -35,18 +36,19 @@ export default function AdminNotificationBell() {
     const interval = setInterval(loadCount, 60000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [loadCount]);
 
   return (
     <Link
       to="/admin/notifications"
       aria-label={`Admin notifications${count > 0 ? `, ${count} unread` : ""}`}
-      className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl text-slate-200 transition hover:bg-slate-800 hover:text-white"
+      title={count > 0 ? `${count} unread notifications` : "Notifications"}
+      className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-transparent text-slate-600 transition-colors hover:border-slate-200 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-slate-800 dark:hover:text-indigo-300 dark:focus-visible:ring-offset-slate-950"
     >
-      <FaBell className="text-lg" />
+      <FaBell className="text-lg" aria-hidden="true" />
 
       {count > 0 && (
-        <span className="absolute -right-0.5 -top-0.5 flex min-h-5 min-w-5 items-center justify-center rounded-full border-2 border-slate-900 bg-red-500 px-1 text-[10px] font-bold leading-none text-white">
+        <span className="absolute -right-0.5 -top-0.5 flex min-h-5 min-w-5 items-center justify-center rounded-full border-2 border-white bg-red-500 px-1 text-[10px] font-bold leading-none text-white dark:border-slate-900">
           {count > 99 ? "99+" : count}
         </span>
       )}

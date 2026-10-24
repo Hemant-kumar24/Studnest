@@ -4,6 +4,11 @@ const Room = require("../models/Room");
 const Hostel = require("../models/Hostel");
 const { safeStudentNotification, safeAdminNotifications } = require("../utils/notificationService");
 
+// Escape user input so it is matched literally inside a RegExp
+// (prevents errors on characters like "(" or "+" and wildcard matching).
+const escapeRegex = (value) =>
+  String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
 
 // ==========================================
 // SYNC HOSTEL ROOM COUNTERS
@@ -505,13 +510,14 @@ exports.getAllBookings = async (
 
     if (
       search &&
+      typeof search === "string" &&
       search.trim()
     ) {
       const keyword =
         search.trim();
 
       const regex = new RegExp(
-        keyword,
+        escapeRegex(keyword),
         "i"
       );
 

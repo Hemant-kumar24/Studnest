@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import {
-  FaStar,
   FaEye,
   FaTrash,
   FaUser,
@@ -11,7 +10,6 @@ import {
 import RatingStars from "./RatingStars";
 
 const AdminReviewCard = ({ review, onDelete, workingId }) => {
-  // Normalize review data
   const student =
     review?.userId ||
     review?.user ||
@@ -39,15 +37,9 @@ const AdminReviewCard = ({ review, onDelete, workingId }) => {
     hostel?.name ||
     "Unknown Hostel";
 
-  const hostelCity =
-    hostel?.city ||
-    "";
-
+  const hostelCity = hostel?.city || "";
   const rating = Number(review?.rating || 0);
-
-  const comment =
-    review?.comment?.trim() ||
-    "No comment provided.";
+  const comment = review?.comment?.trim() || "No comment provided.";
 
   const createdAt = review?.createdAt
     ? new Date(review.createdAt).toLocaleDateString("en-IN", {
@@ -60,34 +52,31 @@ const AdminReviewCard = ({ review, onDelete, workingId }) => {
   const isDeleting = workingId === reviewId;
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
+    <article className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-800">
       {/* Header */}
-      <div className="p-5 border-b border-gray-100">
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-          {/* Hostel Information */}
-          <div className="flex items-start gap-3 min-w-0">
-            <div className="w-11 h-11 rounded-xl bg-indigo-50 flex items-center justify-center shrink-0">
-              <FaHome className="text-indigo-600 text-lg" />
+      <div className="border-b border-slate-100 p-5 dark:border-slate-800">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex min-w-0 items-start gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-50 dark:bg-indigo-900/30">
+              <FaHome className="text-lg text-indigo-600 dark:text-indigo-400" />
             </div>
 
             <div className="min-w-0">
-              <h3 className="font-semibold text-gray-900 truncate">
+              <h3 className="truncate font-semibold text-slate-900 dark:text-white">
                 {hostelName}
               </h3>
 
               {hostelCity && (
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   {hostelCity}
                 </p>
               )}
             </div>
           </div>
 
-          {/* Rating */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex shrink-0 items-center gap-2">
             <RatingStars rating={rating} />
-
-            <span className="text-sm font-semibold text-gray-700">
+            <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">
               {rating.toFixed(1)}
             </span>
           </div>
@@ -97,68 +86,61 @@ const AdminReviewCard = ({ review, onDelete, workingId }) => {
       {/* Student */}
       <div className="px-5 pt-5">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-            <FaUser className="text-gray-500" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+            <FaUser className="text-slate-500 dark:text-slate-400" />
           </div>
 
           <div className="min-w-0">
-            <p className="font-medium text-gray-900 truncate">
+            <p className="truncate font-medium text-slate-900 dark:text-white">
               {studentName}
             </p>
-
-            <p className="text-sm text-gray-500 truncate">
+            <p className="truncate text-sm text-slate-500 dark:text-slate-400">
               {studentEmail}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Review */}
+      {/* Review text */}
       <div className="px-5 py-5">
-        <div className="bg-gray-50 rounded-xl p-4">
-          <p className="text-sm leading-6 text-gray-700 break-words">
-            "{comment}"
+        <div className="rounded-xl bg-slate-50 p-4 dark:bg-slate-800/70">
+          <p className="break-words text-sm leading-6 text-slate-700 dark:text-slate-200">
+            “{comment}”
           </p>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="px-5 py-4 border-t border-gray-100">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          {/* Date */}
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <FaCalendarAlt className="text-gray-400" />
+      <div className="border-t border-slate-100 px-5 py-4 dark:border-slate-800">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+            <FaCalendarAlt className="text-slate-400 dark:text-slate-500" />
             <span>{createdAt}</span>
           </div>
 
-          {/* Actions */}
           <div className="flex items-center gap-2">
-            {/* View */}
             <Link
               to={`/admin/reviews/${reviewId}`}
-              className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50 hover:text-indigo-600 transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-700 dark:hover:bg-slate-700 dark:hover:text-indigo-300 dark:focus-visible:ring-offset-slate-900"
             >
-              <FaEye />
+              <FaEye aria-hidden="true" />
               <span>View</span>
             </Link>
 
-            {/* Delete */}
             <button
               type="button"
               onClick={() => onDelete(reviewId)}
               disabled={isDeleting}
-              className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-red-50 text-red-600 text-sm font-medium hover:bg-red-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              aria-label={isDeleting ? "Deleting review" : "Delete review"}
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/70 dark:focus-visible:ring-offset-slate-900"
             >
-              <FaTrash />
-
-              <span>
-                {isDeleting ? "Deleting..." : "Delete"}
-              </span>
+              <FaTrash aria-hidden="true" />
+              <span>{isDeleting ? "Deleting..." : "Delete"}</span>
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

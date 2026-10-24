@@ -1,11 +1,13 @@
-const express = require('express');
+
+const express = require("express");
 
 const router = express.Router();
 
 const {
   getAdminProfile,
-  updateAdminProfile
-} = require('../controllers/adminController');
+  updateAdminProfile,
+  changeAdminPassword,
+} = require("../controllers/adminController");
 
 const {
   getDashboardOverview,
@@ -14,66 +16,69 @@ const {
   getOccupancyAnalytics,
   getHostelPerformance,
   getRecentBookings,
-  getComplaintAnalytics
-} = require('../controllers/adminDashboardController');
+  getComplaintAnalytics,
+} = require("../controllers/adminDashboardController");
 
-const adminAuth = require('../middlewares/adminAuth');
-
+const adminAuth = require("../middlewares/adminAuth");
 
 // ==========================================
 // ADMIN PROFILE
 // ==========================================
 
-router.get('/profile', adminAuth, getAdminProfile);
+router.get("/profile", adminAuth, getAdminProfile);
 
-router.put('/profile', adminAuth, updateAdminProfile);
+router.put("/profile", adminAuth, updateAdminProfile);
 
+router.put(
+  "/profile/password",
+  adminAuth,
+  changeAdminPassword
+);
 
 // ==========================================
 // ADMIN DASHBOARD
 // ==========================================
 
 router.get(
-  '/dashboard/overview',
+  "/dashboard/overview",
   adminAuth,
   getDashboardOverview
 );
 
 router.get(
-  '/dashboard/bookings',
+  "/dashboard/bookings",
   adminAuth,
   getBookingAnalytics
 );
 
 router.get(
-  '/dashboard/revenue',
+  "/dashboard/revenue",
   adminAuth,
   getRevenueAnalytics
 );
 
 router.get(
-  '/dashboard/occupancy',
+  "/dashboard/occupancy",
   adminAuth,
   getOccupancyAnalytics
 );
 
 router.get(
-  '/dashboard/hostels',
+  "/dashboard/hostels",
   adminAuth,
   getHostelPerformance
 );
 
 router.get(
-  '/dashboard/recent-bookings',
+  "/dashboard/recent-bookings",
   adminAuth,
   getRecentBookings
 );
 
 router.get(
-  '/dashboard/complaints',
+  "/dashboard/complaints",
   adminAuth,
   getComplaintAnalytics
 );
-
 
 module.exports = router;

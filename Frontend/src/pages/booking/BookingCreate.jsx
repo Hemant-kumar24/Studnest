@@ -40,7 +40,8 @@ export default function BookingCreate() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const today = new Date().toISOString().split("T")[0];
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 
   /* =========================
      Load Hostel + Room
@@ -237,7 +238,9 @@ export default function BookingCreate() {
     }
 
     if (
-      Number(room.availableBeds || 0) <= 0
+      room.availableBeds !== undefined &&
+      room.availableBeds !== null &&
+      Number(room.availableBeds) <= 0
     ) {
       setError(
         "No beds are currently available in this room."
@@ -394,7 +397,7 @@ export default function BookingCreate() {
 
         {/* Error */}
         {error && (
-          <div className="mb-6 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 dark:border-red-900/50 dark:bg-red-950/30">
+          <div role="alert" aria-live="polite" className="mb-6 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 dark:border-red-900/50 dark:bg-red-950/30">
             <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-100 text-xs font-bold text-red-600 dark:bg-red-900/50 dark:text-red-300">
               !
             </div>

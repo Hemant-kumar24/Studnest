@@ -41,6 +41,8 @@ export default function BookingDetails() {
       const bookingData =
         response.data?.data ||
         response.data?.booking ||
+        response.data ||
+        response?.booking ||
         null;
 
       setBooking(bookingData);
@@ -77,9 +79,11 @@ export default function BookingDetails() {
       const updatedBooking =
         response.data?.data ||
         response.data?.booking ||
+        response.data ||
+        response?.booking ||
         null;
 
-      if (updatedBooking) {
+      if (updatedBooking?._id) {
         setBooking(updatedBooking);
       } else {
         await loadBooking();
@@ -269,7 +273,7 @@ export default function BookingDetails() {
 
               <p className="mt-2 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                 <FaFileInvoice />
-                Booking ID: {booking._id}
+                <span className="break-all">Booking ID: {booking._id}</span>
               </p>
             </div>
 
@@ -290,7 +294,7 @@ export default function BookingDetails() {
         ======================================== */}
 
         {error && (
-          <div className="mb-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
+          <div role="alert" aria-live="polite" className="mb-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
             <FaExclamationCircle />
             {error}
           </div>
